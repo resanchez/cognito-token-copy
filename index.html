@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cognito Token Grabber</title>
+</head>
+
+<body>
+  <h1>Cognito Token Grabber</h1>
+  This is a JavaScript bookmarklet for grabbing your cognito access token from your localStorage.
+
+  <p>You can use this link to do so:
+    <a href="javascript:(()=>navigator.permissions.query({name:'clipboard-write'}).then(result=>{if(result.state==='granted'||result.state==='prompt'){const key=Object.keys(window.localStorage).find(k=>k.match(/^CognitoIdentityServiceProvider.*accessToken$/));if(key){navigator.clipboard.writeText(window.localStorage.getItem(key));}else{console.warn('Did not find a corresponding token in your localStorage');}}else{console.error('Cannot get access to clipboard, missing permissions');}}))()">
+      Copy Cognito Token
+    </a>
+  </p>
+  <p>You can test it on this page by clicking the link or bookmark the link to use it on any page (drag it into your favorites bar).</p>
+  <script>
+    window.localStorage.setItem('CognitoIdentityServiceProvider.fakeUser.fakeEmail.accessToken', 'Test-token-for-demonstration-on-this-page.');
+  </script>
+</body>
+
+</html>
